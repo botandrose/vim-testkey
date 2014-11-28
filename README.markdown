@@ -27,3 +27,7 @@ then simply copy and paste:
 * configuration: override default testkey
 * configuration: add or override support for new test types
 
+## Acknowledgements
+
+* Maureen Dugan: for pointing out the inadequacies of my previous setup.
+* Gary Bernhardt: for the idea to use Enter as the test key.
