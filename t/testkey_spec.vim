@@ -1,7 +1,7 @@
 filetype plugin on
 runtime! plugin/testkey.vim
 
-describe 'TestKey()'
+describe 'TestKey(file, line)'
   it 'does nothing if there is no match and nothing has been run yet'
     Expect TestKey("omg", 1) ==# ""
   end
