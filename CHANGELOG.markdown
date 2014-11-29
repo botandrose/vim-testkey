@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.0 - 2014-11-29
+
+* Support for configuring your own key mapping
+* Move test runner config into g:TestKey.runners dictionary
+
 ## 0.2.0 - 2014-11-29
 
 * Support for configuring new test runners

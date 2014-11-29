@@ -1,6 +1,6 @@
 " save current file and run it with vim-flavor, rspec, cucumber, or mocha
 
-let g:TestKey = { 'runners': {}, 'command' : '' }
+let g:TestKey = { 'runners': {}, 'testkey': '<ENTER>', 'command' : '' }
 
 let g:TestKey.runners.vspec = { 'match': '_spec.vim$' }
 function g:TestKey.runners.vspec.run(file, line)
@@ -39,5 +39,5 @@ function! TestKey()
   exec g:TestKey.lookup(expand("%"), line("."))
 endfunction
 
-map <ENTER> :call TestKey()<cr>
+execute "map " . g:TestKey.testkey . " :call TestKey()<cr>"
 

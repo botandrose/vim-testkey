@@ -34,13 +34,24 @@ function that returns a string to execute the test runner itself. This function
 is provided two arguments: `a:file` and `a:line`, which are the current file
 name and the current line number, respectively.
 
-For example, here is the test runner configuration for Cucumber:
+To add your own test runner, (or override an existing), just modify the
+`g:TestKey.runners` dictionary in your .vimrc. For example, here is the test
+runner configuration for Cucumber:
 
 ```vimscript
 let g:TestKey.runners.cucumber = { 'match': '.feature$' }
 function g:TestKey.runners.cucumber.run(file, line)
   return ':!clear && cucumber '.a:file.':'.a:line
 endfunction
+```
+
+### Configuring the test key mapping
+
+By default, `<ENTER>` is the test key. To use a different key, open up your
+.vimrc, and set `g:TestKey.testkey` to your preferred test key. For example:
+
+```vimscript
+let g:TestKey.testkey = "<leader>s"
 ```
 
 ## Acknowledgements
