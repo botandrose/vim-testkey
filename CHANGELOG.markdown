@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.2 - 2014-11-29
+
+* Fix overriding existing test runners
+
 ## 0.3.1 - 2014-11-29
 
 * Fix custom key mapping configuration
