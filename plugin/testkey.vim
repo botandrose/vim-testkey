@@ -6,26 +6,33 @@ end
 
 let g:TestKey = extend({ 'runners': {}, 'testkey': '<ENTER>', 'command' : '' }, g:TestKey)
 
-let g:TestKey.runners.vspec = { 'match': '_spec.vim$' }
-function g:TestKey.runners.vspec.run(file, line)
-  return ':!clear && vim-flavor test '.a:file
-endfunction
+if !exists("g:TestKey.runners.vspec")
+  let g:TestKey.runners.vspec = { 'match': '_spec.vim$' }
+  function g:TestKey.runners.vspec.run(file, line)
+    return ':!clear && vim-flavor test '.a:file
+  endfunction
+end
 
-let g:TestKey.runners.rspec = { 'match': '_spec.rb$' }
-function g:TestKey.runners.rspec.run(file, line)
-  return ':!clear && rspec '.a:file
-endfunction
+if !exists("g:TestKey.runners.rspec")
+  let g:TestKey.runners.rspec = { 'match': '_spec.rb$' }
+  function g:TestKey.runners.rspec.run(file, line)
+    return ':!clear && rspec '.a:file
+  endfunction
+end
 
-let g:TestKey.runners.mocha = { 'match': '_spec.js' }
-function g:TestKey.runners.mocha.run(file, line)
-  return ':!clear && mocha '.a:file
-endfunction
+if !exists("g:TestKey.runners.mocha")
+  let g:TestKey.runners.mocha = { 'match': '_spec.js' }
+  function g:TestKey.runners.mocha.run(file, line)
+    return ':!clear && mocha '.a:file
+  endfunction
+end
 
-let g:TestKey.runners.cucumber = { 'match': '.feature$' }
-function g:TestKey.runners.cucumber.run(file, line)
-  return ':!clear && cucumber '.a:file.':'.a:line
-endfunction
-
+if !exists("g:TestKey.runners.cucumber")
+  let g:TestKey.runners.cucumber = { 'match': '.feature$' }
+  function g:TestKey.runners.cucumber.run(file, line)
+    return ':!clear && cucumber '.a:file.':'.a:line
+  endfunction
+end
 
 function! g:TestKey.lookup(file, line)
   for [name, runner] in items(g:TestKey.runners)
