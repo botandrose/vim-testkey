@@ -1,6 +1,6 @@
 # vim-testkey
 
-Tighten your TDD feedback loop!
+Run your tests with a single keystroke! Tighten your TDD feedback loop!
 
 [![Build Status](https://travis-ci.org/botandrose/vim-testkey.svg)](https://travis-ci.org/botandrose/vim-testkey)
 
