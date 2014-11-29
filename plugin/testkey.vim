@@ -1,38 +1,43 @@
-" save current file and run it with rspec, cucumber, or mocha
+" save current file and run it with vim-flavor, rspec, cucumber, or mocha
 
-let s:command = ""
+let g:TestKey = { 'runners': {}, 'command' : '' }
 
-let g:TestKey = {}
-
-let g:TestKey.vspec = { 'match': '_spec.vim$' }
-function g:TestKey.vspec.run(file, line)
+let g:TestKey.runners.vspec = { 'match': '_spec.vim$' }
+function g:TestKey.runners.vspec.run(file, line)
   return ':!clear && vim-flavor test '.a:file
 endfunction
 
-let g:TestKey.rspec = { 'match': '_spec.rb$' }
-function g:TestKey.rspec.run(file, line)
+let g:TestKey.runners.rspec = { 'match': '_spec.rb$' }
+function g:TestKey.runners.rspec.run(file, line)
   return ':!clear && rspec '.a:file
 endfunction
 
-let g:TestKey.mocha = { 'match': '_spec.js' }
-function g:TestKey.mocha.run(file, line)
+let g:TestKey.runners.mocha = { 'match': '_spec.js' }
+function g:TestKey.runners.mocha.run(file, line)
   return ':!clear && mocha '.a:file
 endfunction
 
-let g:TestKey.cucumber = { 'match': '.feature$' }
-function g:TestKey.cucumber.run(file, line)
+let g:TestKey.runners.cucumber = { 'match': '.feature$' }
+function g:TestKey.runners.cucumber.run(file, line)
   return ':!clear && cucumber '.a:file.':'.a:line
 endfunction
 
-function! TestKey(file, line)
-  for [name, runner] in items(g:TestKey)
+
+function! g:TestKey.lookup(file, line)
+  for [name, runner] in items(g:TestKey.runners)
     if match(a:file, runner.match) != -1
-      let s:command=runner.run(a:file, a:line)
+      let g:TestKey.command=runner.run(a:file, a:line)
     end
   endfor
 
-  return s:command
+  return g:TestKey.command
 endfunction
 
-map <ENTER> :w<cr> :exec TestKey(expand("%"), line("."))<cr>
+
+function! TestKey()
+  w
+  exec g:TestKey.lookup(expand("%"), line("."))
+endfunction
+
+map <ENTER> :call TestKey()<cr>
 

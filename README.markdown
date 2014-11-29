@@ -27,23 +27,21 @@ then simply copy and paste:
 
 ### Adding or overriding test runner configuration:
 
-Test runner configurations are added to the `g:TestKey` dictionary. Each test
-runner configuration is a dictionary with two keys: `match` and `run`. `match`
-is a regex for detecting the test type from the filename. `run` is a function
-that returns a string to execute the test runner itself. This function is
-provided two arguments: `a:file` and `a:line`, which are the current file name
-and the current line number, respectively.
+Test runner configurations are added to the `g:TestKey.runners` dictionary. Each
+test runner configuration is a dictionary with two keys: `match` and `run`.
+`match` is a regex for detecting the test type from the filename. `run` is a
+function that returns a string to execute the test runner itself. This function
+is provided two arguments: `a:file` and `a:line`, which are the current file
+name and the current line number, respectively.
 
 For example, here is the test runner configuration for Cucumber:
 
-  let g:TestKey.cucumber = { 'match': '.feature$' }
-  function g:TestKey.cucumber.run(file, line)
-    return ':!clear && cucumber '.a:file.':'.a:line
-  endfunction
-
-## TODO:
-
-* configuration: override default testkey
+```vimscript
+let g:TestKey.runners.cucumber = { 'match': '.feature$' }
+function g:TestKey.runners.cucumber.run(file, line)
+  return ':!clear && cucumber '.a:file.':'.a:line
+endfunction
+```
 
 ## Acknowledgements
 
