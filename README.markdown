@@ -2,6 +2,8 @@
 
 Tighten your TDD feedback loop!
 
+[![Build Status](https://travis-ci.org/botandrose/vim-testkey.svg)](https://travis-ci.org/botandrose/vim-testkey)
+
 ## Installation:
 
 If you don't have a preferred installation method, I recommend
