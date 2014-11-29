@@ -4,6 +4,7 @@ let s:command = ""
 
 function! TestKey(file)
   let s:config = {}
+  let s:config['_spec.vim$'] = ':!clear && vim-flavor test %'
   let s:config['_spec.rb$'] = ':!clear && rspec %'
   let s:config['_spec.js'] = ':!clear && mocha %'
   let s:config['.feature$'] = ':!clear && cucumber %:'.line('.')

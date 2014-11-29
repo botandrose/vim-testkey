@@ -6,6 +6,10 @@ describe 'TestKey()'
     Expect TestKey("omg") ==# ""
   end
 
+  it 'knows how to test with vspec'
+    Expect TestKey("t/vim_spec.vim") ==# ":!clear && vim-flavor test t/vim_spec.vim"
+  end
+
   it 'knows how to test with rspec'
     Expect TestKey("spec/models/model_spec.rb") ==# ":!clear && rspec spec/models/model_spec.rb"
   end

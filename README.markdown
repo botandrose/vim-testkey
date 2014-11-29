@@ -18,6 +18,7 @@ then simply copy and paste:
 
 ### Test type support:
 
+* vspec: files that end with `_spec.vim`
 * rspec: files that end with `_spec.rb`
 * cucumber: files that end with `.feature` (will run just the scenario under the cursor)
 * mocha: files that end with `_test.js` or `_test.js.coffee`
