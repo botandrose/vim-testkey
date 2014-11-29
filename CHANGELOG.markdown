@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1 - 2014-11-29
+
+* Fix custom key mapping configuration
+
 ## 0.3.0 - 2014-11-29
 
 * Support for configuring your own key mapping
