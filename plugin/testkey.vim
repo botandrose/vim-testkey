@@ -1,17 +1,21 @@
 " save current file and run it with rspec, cucumber, or mocha
 
-function! TestKey()
-  :w
-  let file = expand("%")
-  if match(file, '_spec.rb$') != -1
-    let s:command=":!clear && rspec ".file
-  elseif match(file, '.feature$') != -1
-    let s:command=":!clear && bin/cucumber ".file.":".line(".")
-  elseif match(file, '_spec.js.coffee$') != -1
-    let s:command=":!clear && mocha ".file
-  end
-  exec s:command
+let s:command = ""
+
+function! TestKey(file)
+  let s:config = {}
+  let s:config['_spec.rb$'] = ':!clear && rspec %'
+  let s:config['_spec.js'] = ':!clear && mocha %'
+  let s:config['.feature$'] = ':!clear && cucumber %:'.line('.')
+
+  for [key, value] in items(s:config)
+    if match(a:file, key) != -1
+      let s:command=substitute(value, "%", a:file, "g")
+    end
+  endfor
+
+  return s:command
 endfunction
 
-map <ENTER> :call TestKey()<cr>
+map <ENTER> :w<cr> :exec TestKey(expand("%"))<cr>
 
