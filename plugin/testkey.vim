@@ -1,6 +1,10 @@
 " save current file and run it with vim-flavor, rspec, cucumber, or mocha
 
-let g:TestKey = { 'runners': {}, 'testkey': '<ENTER>', 'command' : '' }
+if !exists("g:TestKey")
+  let g:TestKey = {}
+end
+
+let g:TestKey = extend({ 'runners': {}, 'testkey': '<ENTER>', 'command' : '' }, g:TestKey)
 
 let g:TestKey.runners.vspec = { 'match': '_spec.vim$' }
 function g:TestKey.runners.vspec.run(file, line)

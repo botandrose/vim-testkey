@@ -48,10 +48,11 @@ endfunction
 ### Configuring the test key mapping
 
 By default, `<ENTER>` is the test key. To use a different key, open up your
-.vimrc, and set `g:TestKey.testkey` to your preferred test key. For example:
+.vimrc, and prefill the `g:TestKey` configuration dictionary with `testkey` set
+to your preferred test key. For example:
 
 ```vimscript
-let g:TestKey.testkey = "<leader>s"
+let g:TestKey = { 'testkey': '<leader>s' }
 ```
 
 ## Acknowledgements
