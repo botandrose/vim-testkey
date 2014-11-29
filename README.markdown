@@ -35,10 +35,12 @@ is provided two arguments: `a:file` and `a:line`, which are the current file
 name and the current line number, respectively.
 
 To add your own test runner, (or override an existing), just modify the
-`g:TestKey.runners` dictionary in your .vimrc. For example, here is the test
+`g:TestKey.runners` dictionary in your .vimrc. For example, here is a test
 runner configuration for Cucumber:
 
 ```vimscript
+let g:TestKey = { 'runners': {} }
+
 let g:TestKey.runners.cucumber = { 'match': '.feature$' }
 function g:TestKey.runners.cucumber.run(file, line)
   return ':!clear && cucumber '.a:file.':'.a:line
@@ -53,6 +55,13 @@ to your preferred test key. For example:
 
 ```vimscript
 let g:TestKey = { 'testkey': '<leader>s' }
+```
+
+Or, if you have already initialized the `g:TestKey` dictionary earlier, perhaps
+to add a test runner:
+
+```vimscript
+let g:TestKey.testkey = '<leader>s'
 ```
 
 ## Acknowledgements
