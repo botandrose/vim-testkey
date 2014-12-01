@@ -44,11 +44,28 @@ function! g:TestKey.lookup(file, line)
   return g:TestKey.command
 endfunction
 
-
 function! TestKey()
   w
   exec g:TestKey.lookup(expand("%"), line("."))
 endfunction
 
-execute "map " . g:TestKey.testkey . " :call TestKey()<cr>"
+function! s:map_testkey()
+  " The `<Enter>` key is a bit problematic in certain buffers where the
+  " `<Enter>` key have a specific meaning and is not replaceable. This buffers
+  " are:
+  " - [Command Line], (:h cmdwin) which is a regular vim buffer with a buffer name
+  "   enclosed in square brackets
+  " - Quickfix and Location List
+  " - Any buffer who already have mapped the `<Enter>` key
+  if g:TestKey.testkey != '<Enter>' ||
+        \ ( bufname('')[0] != '[' &&
+        \   &filetype !=# 'qf' &&
+        \   empty(maparg(g:TestKey.testkey)) )
+    execute 'map <buffer>' g:TestKey.testkey ':call TestKey()<cr>'
+  endif
+endfunction
 
+augroup testkey
+  autocmd!
+  autocmd FileType * call s:map_testkey()
+augroup END
