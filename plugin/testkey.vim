@@ -47,7 +47,7 @@ endfunction
 
 function! TestKey()
   w
-  exec g:TestKey.lookup(expand("%"), line("."))
+  exec g:TestKey.lookup(escape(expand("%"), '\'), line("."))
 endfunction
 
 execute "map " . g:TestKey.testkey . " :call TestKey()<cr>"
