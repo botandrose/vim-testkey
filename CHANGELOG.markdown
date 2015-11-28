@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.0 - 2015-11-28
+
+* Works on Windows (via cygwin)
+
 ## 0.3.2 - 2014-11-29
 
 * Fix overriding existing test runners
